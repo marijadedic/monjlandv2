@@ -1,0 +1,58 @@
+{
+	"name": "monjlandv2",
+	"version": "1.0.0",
+	"description": "",
+	"main": "socket.js",
+	"scripts": {
+		"build": "rm -rf dist/* && tsc",
+		"serve": "node dist/src/socket.js",
+		"start": "yarn build && yarn serve",
+		"dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/socket.ts --ignore history.json",
+		"prettier:check": "prettier '**/*.{ts,js,json,md,yml,yaml}' --check",
+		"prettier:fix": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write",
+		"lint:check": "eslint --ext .js,.ts .",
+		"lint:fix": "eslint --ext .js,.ts . --fix",
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/marijadedic/monjlandv2.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^16.0.1",
+		"koa": "^2.13.4",
+		"koa-bodyparser": "^4.3.0",
+		"typescript": "^4.7.4",
+		"websocket": "^1.0.34",
+		"winston": "^3.8.1"
+	},
+	"devDependencies": {
+		"@types/koa-bodyparser": "^4.3.7",
+		"@types/node": "^18.0.6",
+		"@types/websocket": "^1.0.5",
+		"@types/winston": "^2.4.4",
+		"eslint": "^8.19.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.5.0",
+		"nodemon": "^2.0.19",
+		"prettier": "^2.7.1",
+		"ts-node": "^10.9.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"**/*.{js}": [
+			"npm run lint:fix"
+		],
+		"**/*.json": [
+			"npm run prettier:fix"
+		]
+	}
+}

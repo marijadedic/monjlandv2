@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2019",
+		"noImplicitAny": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"noUnusedLocals": false,
+		"outDir": "dist",
+		"skipLibCheck": true,
+		"keyofStringsOnly": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"rootDir": ".",
+		"paths": {
+			"node-schedule-tz": ["./typings/node-schedule-tz"]
+		},
+		"baseUrl": "src"
+	},
+	"exclude": ["dist/**", "client/**"]
+}

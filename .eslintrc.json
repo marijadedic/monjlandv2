@@ -1,0 +1,24 @@
+{
+	"env": {
+		"es6": true,
+		"node": true,
+		"browser": true
+	},
+	"rules": {
+		"promise/always-return": "off",
+		"promise/catch-or-return": "off",
+		"promise/no-return-wrap": "off",
+		"no-multiple-empty-lines": "error",
+		"no-var": "error",
+		"no-unused-vars": "warn",
+		"strict": 0,
+		"no-global-assign": "error",
+		"no-undef": "error",
+		"comma-dangle": 0,
+		"object-curly-spacing": ["error", "always"],
+		"require-await": "off"
+	},
+	"extends": ["prettier", "plugin:prettier/recommended"],
+	"plugins": ["prettier", "eslint-plugin-prettier"],
+	"reportUnusedDisableDirectives": true
+}

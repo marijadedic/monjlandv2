@@ -1,0 +1,20 @@
+.chatroom-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.chatroom-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.chatroom-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.chatroom-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.chatroom-enter-active,
+.chatroom-exit-active {
+  transition: opacity 500ms, transform 500ms;
+}
