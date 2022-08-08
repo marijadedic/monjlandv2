@@ -8,7 +8,5 @@ interface WebSocketContextProps {
 export const ConnectionContext = createContext<WebSocket>({} as WebSocket);
 
 export const WebSocketConnectionContext: FunctionComponent<WebSocketContextProps> = ({ connection, children }) => (
-    <ConnectionContext.Provider value={connection}>
-        {children}
-    </ConnectionContext.Provider>
+	<ConnectionContext.Provider value={connection}>{children}</ConnectionContext.Provider>
 );

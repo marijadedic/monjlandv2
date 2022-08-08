@@ -16,8 +16,15 @@ export const Stats: FunctionComponent<StatsContainerProps> = ({ toggleStats }) =
 	return (
 		<MainContainer>
 			<Header>
-				<StatsIcon src='./statsIcon.svg' alt='stats' />
-				<CancelIcon src='./xIcon.svg' alt='cancel' onClick={toggleStats} />
+				<StatsIcon
+					src='./statsIcon.svg'
+					alt='stats'
+				/>
+				<CancelIcon
+					src='./xIcon.svg'
+					alt='cancel'
+					onClick={toggleStats}
+				/>
 			</Header>
 			<ClientList>
 				{stats.map((client) => (

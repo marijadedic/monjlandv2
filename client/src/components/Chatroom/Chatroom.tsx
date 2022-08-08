@@ -47,7 +47,10 @@ export const Chatroom = () => {
 			<ChatroomTitleContainer />
 			<Body>
 				{messages.map((message) => (
-					<Message key={message.id} message={message} />
+					<Message
+						key={message.id}
+						message={message}
+					/>
 				))}
 				<div ref={bottomRef} />
 			</Body>
@@ -55,10 +58,13 @@ export const Chatroom = () => {
 			{showNewMessagePin && (
 				<NewMessagePin onClick={showNewMessages}>
 					<Bubble>
-						<MessageIcon src='./messageIcon.svg' alt='message' />
+						<MessageIcon
+							src='./messageIcon.svg'
+							alt='message'
+						/>
 					</Bubble>
 
-					<Pointer></Pointer>
+					<Pointer />
 				</NewMessagePin>
 			)}
 			<MessageInputContainer />

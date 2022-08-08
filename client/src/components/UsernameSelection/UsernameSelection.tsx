@@ -39,7 +39,10 @@ export const UsernameSelection: FunctionComponent<UsernameSelectionProps> = ({ e
 			/>
 			<ErrorLabel visible={!!error}>{error}</ErrorLabel>
 
-			<Button disabled={WebSocketConnection.readyState > 1 || !inputValue} onClick={handleContinueClick}>
+			<Button
+				disabled={WebSocketConnection.readyState > 1 || !inputValue}
+				onClick={handleContinueClick}
+			>
 				Continue
 			</Button>
 		</MainContainer>

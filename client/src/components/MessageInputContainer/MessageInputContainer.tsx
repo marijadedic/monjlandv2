@@ -38,7 +38,10 @@ export const MessageInputContainer = () => {
 			></MessageInput>
 			<SendButtonContainer>
 				<SendButton onClick={handleSendMessage}>
-					<SendIcon src='./sendIcon.svg' alt='send' />
+					<SendIcon
+						src='./sendIcon.svg'
+						alt='send'
+					/>
 				</SendButton>
 			</SendButtonContainer>
 		</MainContainer>
