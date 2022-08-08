@@ -47,8 +47,20 @@ wsServer.on('request', (request) => {
 		try {
 			if (message.type === 'utf8') {
 				const messageData = JSON.parse(message.utf8Data);
-
-				if (messageData.type === 'username') {
+				if (messageData.type === 'username-availability') {
+					const { error } = validateUsername(clients, messageData);
+					if (error) {
+						sendMessage(connection, {
+							type: 'error',
+							data: error
+						});
+					} else {
+						sendMessage(connection, {
+							type: 'info',
+							data: 'username-available'
+						});
+					}
+				} else if (messageData.type === 'username') {
 					const { error } = validateUsername(clients, messageData);
 
 					if (error) {
@@ -70,19 +82,6 @@ wsServer.on('request', (request) => {
 						sendMessageToAllClients(connections, { type: 'stats', data: { clients } });
 
 						logger.info(`User ${username} with ${userColor} color joined.`);
-					}
-				} else if (messageData.type === 'username-availability') {
-					const { error } = validateUsername(clients, messageData);
-					if (error) {
-						sendMessage(connection, {
-							type: 'error',
-							data: error
-						});
-					} else {
-						sendMessage(connection, {
-							type: 'info',
-							data: 'username-available'
-						});
 					}
 				} else if (messageData.type === 'message') {
 					logger.info(`Received Message from ${username}: ${messageData.data}`);
