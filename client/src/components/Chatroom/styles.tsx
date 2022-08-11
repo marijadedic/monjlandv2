@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
 	flex-direction: column;
 	width: 60vw;
 	max-width: 800px;
-	margin: 4rem auto;
+	margin: 3rem auto;
 	height: 85vh;
 	background-color: #121212;
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -13,7 +13,7 @@ export const MainContainer = styled.div`
 	@media screen and (max-width: 1080px) {
 		box-shadow: none;
 		width: 100%;
-		height: 100vh;
+		height: calc(100vh - 1.6rem * 2 - 0.4rem);
 		margin: 0;
 		max-width: unset;
 	}
@@ -21,7 +21,9 @@ export const MainContainer = styled.div`
 
 export const Body = styled.div`
 	height: 100%;
-	padding: 1rem 1.5rem;
+	padding: 1.5rem 1rem 0 1rem;
+	display: flex;
+	flex-direction: column;
 	overflow: auto;
 	position: relative;
 `;

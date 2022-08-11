@@ -4,10 +4,9 @@ export const MainContainer = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
-	margin-top: 0.5rem;
 `;
 
-export const MessageInput = styled.textarea`
+export const Textarea = styled.textarea`
 	width: 100%;
 	border: none;
 	border-radius: 2rem;

@@ -4,26 +4,36 @@ import { UserContext } from 'context/UserContext';
 
 import { ChatroomTitleContainer } from 'components/ChatroomTitleContainer/ChatroomTitleContainer';
 import { Message } from 'components/Message/Message';
-import { MessageInputContainer } from 'components/MessageInputContainer/MessageInputContainer';
+import { MessageInput } from 'components/MessageInputContainer/MessageInputContainer';
 import { useOnScreen } from 'utils/hooks';
 
 import { Body, Bubble, MainContainer, MessageIcon, NewMessagePin, Pointer } from './styles';
 
 export const Chatroom = () => {
+	const { messages } = useContext(MessagesContext);
+
 	const [showNewMessagePin, setShowNewMessagePin] = useState(false);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
-
-	const { messages } = useContext(MessagesContext);
+	const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
 	const { user } = useContext(UserContext);
 
 	const isVisible = useOnScreen(bottomRef);
 
+	const scrollToBottom = () => {
+		bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		setTimeout(() => {
+			if (bottomRef.current) {
+				bottomRef.current.scrollIntoView({ block: 'start' });
+			}
+		}, 200);
+	};
+
 	useEffect(() => {
 		// scroll to bottom on every new message if user hasn't already scrolled up
 		if (isVisible) {
-			bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+			scrollToBottom();
 		} else if (messages.length) {
 			if (user.username === messages[messages.length - 1].author) {
 				showNewMessages();
@@ -39,20 +49,25 @@ export const Chatroom = () => {
 
 	const showNewMessages = () => {
 		setShowNewMessagePin(false);
-		bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		scrollToBottom();
 	};
 
 	return (
 		<MainContainer>
 			<ChatroomTitleContainer />
 			<Body>
-				{messages.map((message) => (
+				{messages.map((message, i) => (
 					<Message
 						key={message.id}
 						message={message}
 					/>
 				))}
-				<div ref={bottomRef} />
+				<div
+					ref={bottomRef}
+					style={{ color: 'transparent' }}
+				>
+					bottom
+				</div>
 			</Body>
 
 			{showNewMessagePin && (
@@ -67,7 +82,7 @@ export const Chatroom = () => {
 					<Pointer />
 				</NewMessagePin>
 			)}
-			<MessageInputContainer />
+			<MessageInput messageInputRef={messageInputRef} />
 		</MainContainer>
 	);
 };

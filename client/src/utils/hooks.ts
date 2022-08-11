@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 export function useOnScreen<T>(ref: React.RefObject<T>) {
-	const [isIntersecting, setIntersecting] = useState(false);
+	const [isIntersecting, setIntersecting] = useState(true);
 
 	const observer = useMemo(
 		() =>
@@ -12,7 +12,7 @@ export function useOnScreen<T>(ref: React.RefObject<T>) {
 	);
 
 	useEffect(() => {
-		observer.observe(ref?.current as unknown as Element);
+		if (ref.current) observer.observe(ref?.current as unknown as Element);
 
 		return () => {
 			observer.disconnect();

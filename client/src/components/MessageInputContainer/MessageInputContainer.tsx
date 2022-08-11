@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { FunctionComponent, RefObject, useContext, useState } from 'react';
 import { ConnectionContext } from 'context/WebSocketConnectionContext';
 
 import { sendMessage } from 'utils/message';
 
-import { MainContainer, MessageInput, SendButton, SendButtonContainer, SendIcon } from './styles';
+import { MainContainer, SendButton, SendButtonContainer, SendIcon,Textarea } from './styles';
 
-export const MessageInputContainer = () => {
+interface MessageInputProps {
+	messageInputRef: RefObject<HTMLTextAreaElement>;
+}
+
+export const MessageInput: FunctionComponent<MessageInputProps> = ({ messageInputRef }) => {
 	const [inputValue, setInputValue] = useState('');
 
 	const WebSocketConnection = useContext(ConnectionContext);
@@ -22,6 +26,7 @@ export const MessageInputContainer = () => {
 	};
 
 	const handleSendMessage = () => {
+		messageInputRef.current?.focus();
 		if (inputValue.length) {
 			sendMessage(WebSocketConnection, inputValue, 'message');
 			setInputValue('');
@@ -30,12 +35,13 @@ export const MessageInputContainer = () => {
 
 	return (
 		<MainContainer>
-			<MessageInput
+			<Textarea
+				ref={messageInputRef}
 				placeholder='Type message...'
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}
 				onKeyDown={handleInputChange}
-			></MessageInput>
+			></Textarea>
 			<SendButtonContainer>
 				<SendButton onClick={handleSendMessage}>
 					<SendIcon
