@@ -4,7 +4,66 @@
 		"node": true,
 		"browser": true
 	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module",
+		"project": "tsconfig.json"
+	},
 	"rules": {
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "default",
+				"format": ["camelCase", "UPPER_CASE", "snake_case"]
+			},
+			{
+				"selector": "variable",
+				"format": ["camelCase", "UPPER_CASE", "snake_case"]
+			},
+			{
+				"selector": "parameter",
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "memberLike",
+				"modifiers": ["private"],
+				"format": ["camelCase"],
+				"leadingUnderscore": "allow"
+			},
+			{
+				"selector": "typeLike",
+				"format": ["PascalCase"]
+			}
+		],
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/explicit-member-accessibility": "off",
+		"@typescript-eslint/ban-types": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"lines-between-class-members": ["error", "always"],
+		"@typescript-eslint/require-await": "error",
+		"padding-line-between-statements": [
+			"error",
+			{
+				"blankLine": "always",
+				"prev": "import",
+				"next": "class"
+			},
+			{
+				"blankLine": "always",
+				"prev": "import",
+				"next": "export"
+			}
+		],
 		"promise/always-return": "off",
 		"promise/catch-or-return": "off",
 		"promise/no-return-wrap": "off",
@@ -19,6 +78,6 @@
 		"require-await": "off"
 	},
 	"extends": ["prettier", "plugin:prettier/recommended"],
-	"plugins": ["prettier", "eslint-plugin-prettier"],
+	"plugins": ["prettier", "eslint-plugin-prettier", "@typescript-eslint"],
 	"reportUnusedDisableDirectives": true
 }

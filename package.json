@@ -23,16 +23,17 @@
 	"dependencies": {
 		"dotenv": "^16.0.1",
 		"koa": "^2.13.4",
-		"koa-bodyparser": "^4.3.0",
 		"typescript": "^4.7.4",
 		"websocket": "^1.0.34",
 		"winston": "^3.8.1"
 	},
 	"devDependencies": {
-		"@types/koa-bodyparser": "^4.3.7",
+		"@types/koa": "^2.13.5",
 		"@types/node": "^18.0.6",
 		"@types/websocket": "^1.0.5",
 		"@types/winston": "^2.4.4",
+		"@typescript-eslint/eslint-plugin": "^5.33.1",
+		"@typescript-eslint/parser": "^5.33.1",
 		"eslint": "^8.19.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
