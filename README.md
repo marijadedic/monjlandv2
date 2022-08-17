@@ -1,5 +1,5 @@
 
-# Monjland Chatroom
+# Monjland
 
 A chat app that uses KoaJS for server and ReactJs for client. 
 Communication between server and client is done using web sockets.
