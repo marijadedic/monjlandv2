@@ -19,23 +19,19 @@ In the client directory add
 ```
 REACT_APP_WEBSOCKET_URL=
 ```
-The value of that variable should look something like this: `ws://domain_name:PORT` (i.e. ws://localhost:5432)
+The value of that variable should look something like this: `ws://domain_name:PORT` (i.e. `ws://localhost:5432`)
 
 ## Available Scripts
 
-### `yarn run dev` in project directory
-Runs the server in the development mode. 
+- `yarn run dev` in project directory runs the server in the development mode. 
 
-In the client directory, you can run:
-### `yarn start`
-Runs the app in the development mode.
+- `yarn start` in the client directory runs the client in the development mode.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-In the project or client directory, you can run:
+### In the project or client directory, you can run:
 
-### `yarn lint:check` or `yarn lint:fix` 
-Static code and formatting analysis, and fixing.
+- `yarn lint:check` or `yarn lint:fix` for static code and formatting analysis, and fixing.
 
-### `yarn prettier:check` or `yarn prettier:fix` 
-Checking or fixing formatting, but the same is included with `lint:check` and `lint:fix`.
+- `yarn prettier:check` or `yarn prettier:fix` for checking or fixing formatting, but the same is included with `lint:check` and `lint:fix`.
