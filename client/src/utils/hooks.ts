@@ -12,7 +12,7 @@ export function useOnScreen<T>(ref: React.RefObject<T>) {
 	);
 
 	useEffect(() => {
-		if (ref.current) observer.observe(ref?.current as unknown as Element);
+		observer.observe(ref?.current as unknown as Element);
 
 		return () => {
 			observer.disconnect();

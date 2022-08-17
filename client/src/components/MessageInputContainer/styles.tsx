@@ -6,26 +6,41 @@ export const MainContainer = styled.div`
 	align-items: center;
 `;
 
-export const Textarea = styled.textarea`
+export const TextareaWrapper = styled.div`
 	width: 100%;
+	border-radius: 1.5rem;
+	background-color: #353535;
+	margin: 0.5rem;
+	padding: 0.2rem;
+	height: 3rem;
+	display: flex;
+	align-items: center;
+`;
+
+export const Textarea = styled.textarea`
+	border-radius: 1.5rem;
+	background-color: #353535;
+	width: 99%;
+	max-height: 100%;
 	border: none;
-	border-radius: 2rem;
-	padding: 1.2em 0 1.2em 1rem;
-	margin-left: 0.5rem;
-	box-shadow: -1px 0px 15px -8px rgba(0, 0, 0, 0.27);
-	margin-bottom: 0.5rem;
+	height: 2rem;
+	padding: 0.5rem 1rem;
 	resize: none;
 	font-size: 1rem;
-	max-height: 1.2rem;
-	background-color: #353535;
 	color: white;
+	box-sizing: border-box;
+	line-height: 1rem;
+
+	&:focus {
+		outline: none;
+		border: none;
+	}
 `;
 
 export const SendButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	margin: 0 0.7rem;
-	margin-bottom: 0.5rem;
+	margin-right: 0.7rem;
 `;
 
 export const SendButton = styled.button`

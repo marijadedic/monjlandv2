@@ -3,7 +3,7 @@ import { ConnectionContext } from 'context/WebSocketConnectionContext';
 
 import { sendMessage } from 'utils/message';
 
-import { MainContainer, SendButton, SendButtonContainer, SendIcon,Textarea } from './styles';
+import { MainContainer, SendButton, SendButtonContainer, SendIcon,Textarea, TextareaWrapper } from './styles';
 
 interface MessageInputProps {
 	messageInputRef: RefObject<HTMLTextAreaElement>;
@@ -35,6 +35,7 @@ export const MessageInput: FunctionComponent<MessageInputProps> = ({ messageInpu
 
 	return (
 		<MainContainer>
+			<TextareaWrapper >
 			<Textarea
 				ref={messageInputRef}
 				placeholder='Type message...'
@@ -42,6 +43,7 @@ export const MessageInput: FunctionComponent<MessageInputProps> = ({ messageInpu
 				onChange={(e) => setInputValue(e.target.value)}
 				onKeyDown={handleInputChange}
 			></Textarea>
+			</TextareaWrapper>
 			<SendButtonContainer>
 				<SendButton onClick={handleSendMessage}>
 					<SendIcon

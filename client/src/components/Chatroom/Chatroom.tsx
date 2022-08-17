@@ -13,19 +13,21 @@ export const Chatroom = () => {
 	const { messages } = useContext(MessagesContext);
 
 	const [showNewMessagePin, setShowNewMessagePin] = useState(false);
+	const [messagesList, setMessagesList] = useState(messages);
 
 	const bottomRef = useRef<HTMLDivElement>(null);
+	const lastMessageRef = useRef<HTMLDivElement>(null);
 	const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
 	const { user } = useContext(UserContext);
 
-	const isVisible = useOnScreen(bottomRef);
+	const isVisible = useOnScreen(lastMessageRef.current ? lastMessageRef : bottomRef);
 
 	const scrollToBottom = () => {
-		bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		lastMessageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 		setTimeout(() => {
-			if (bottomRef.current) {
-				bottomRef.current.scrollIntoView({ block: 'start' });
+			if (lastMessageRef.current) {
+				lastMessageRef.current.scrollIntoView({ block: 'start' });
 			}
 		}, 200);
 	};
@@ -33,18 +35,33 @@ export const Chatroom = () => {
 	useEffect(() => {
 		// scroll to bottom on every new message if user hasn't already scrolled up
 		if (isVisible) {
+			setMessagesList(messages);
 			scrollToBottom();
-		} else if (messages.length) {
+		} else if (messagesList.length) {
+			setMessagesList(messages);
+
 			if (user.username === messages[messages.length - 1].author) {
 				showNewMessages();
+				setShowNewMessagePin(false);
 			} else {
-				setShowNewMessagePin(true);
+				const timeout = setTimeout(() => {
+					if (user.username !== messages[messages.length - 1].author) setShowNewMessagePin(true);
+				}, 500);
+				return () => {
+					clearTimeout(timeout);
+				};
 			}
 		}
-	}, [messages]);
+	}, [messages, messagesList]);
 
 	useEffect(() => {
-		if (isVisible) setShowNewMessagePin(false);
+		const timeout = setTimeout(() => {
+			if (isVisible) setShowNewMessagePin(false);
+		}, 700);
+
+		return () => {
+			clearTimeout(timeout);
+		};
 	}, [isVisible]);
 
 	const showNewMessages = () => {
@@ -56,10 +73,11 @@ export const Chatroom = () => {
 		<MainContainer>
 			<ChatroomTitleContainer />
 			<Body>
-				{messages.map((message, i) => (
+				{messagesList.map((message, i) => (
 					<Message
 						key={message.id}
 						message={message}
+						lastMessageRef={i === messagesList.length - 1 ? lastMessageRef : null}
 					/>
 				))}
 				<div

@@ -9,9 +9,10 @@ import { Author, MainMessageContainer, MessageContent, Time, Wrapper } from './s
 
 interface MessageProps {
 	message: MessageType;
+	lastMessageRef: RefObject<HTMLDivElement> | null;
 }
 
-export const Message: FunctionComponent<MessageProps> = ({ message }) => {
+export const Message: FunctionComponent<MessageProps> = ({ message, lastMessageRef }) => {
 	const { author, color, text, time } = message;
 
 	const user = useContext(UserContext).user;
@@ -19,7 +20,10 @@ export const Message: FunctionComponent<MessageProps> = ({ message }) => {
 	const isOwnMessage = user.username === author;
 
 	return (
-		<Wrapper isOwnMessage={isOwnMessage}>
+		<Wrapper
+			ref={lastMessageRef}
+			isOwnMessage={isOwnMessage}
+		>
 			<MainMessageContainer>
 				{!isOwnMessage && (
 					<Author
