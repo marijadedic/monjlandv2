@@ -52,6 +52,7 @@ const App: FunctionComponent = () => {
 			<SwitchTransition mode='out-in'>
 				<CSSTransition
 					key={showUsernameSelect ? 'username-select' : 'chatroom'}
+					mountOnEnter
 					unmountOnExit
 					classNames='chatroom'
 					addEndListener={(node, done) => node.addEventListener('transitionend', done, false)}

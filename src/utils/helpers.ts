@@ -12,8 +12,6 @@ export const isOriginAllowed = (origin: string) => {
 
 export const htmlEntities = (string: string) => {
 	let formattedString = String(string);
-	formattedString = formattedString.replace(/<script[^>]*>([\S\s]*?)<\/script>/gim, '');
-	formattedString = formattedString.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, '');
 
 	formattedString = formattedString.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
 		return '&#' + i.charCodeAt(0) + ';';

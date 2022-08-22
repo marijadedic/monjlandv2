@@ -70,6 +70,9 @@ wsServer.on('request', (request) => {
 						});
 					} else {
 						username = htmlEntities(messageData.data);
+
+						if (!username) return;
+
 						userColor = getRandomColor(clients);
 
 						const timeOfJoining = new Date();
@@ -93,6 +96,8 @@ wsServer.on('request', (request) => {
 						author: username,
 						color: userColor
 					};
+
+					if (!newMessage.text) return;
 
 					messageId++;
 

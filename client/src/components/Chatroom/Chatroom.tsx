@@ -80,12 +80,7 @@ export const Chatroom = () => {
 						lastMessageRef={i === messagesList.length - 1 ? lastMessageRef : null}
 					/>
 				))}
-				<div
-					ref={bottomRef}
-					style={{ color: 'transparent' }}
-				>
-					bottom
-				</div>
+				<div ref={bottomRef} />
 			</Body>
 
 			{showNewMessagePin && (
