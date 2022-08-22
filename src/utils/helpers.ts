@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { Message } from 'types/ message';
 import { ConnectionListItem } from 'types/connection';
 import { Client } from 'types/stats';
@@ -22,17 +21,6 @@ export const htmlEntities = (string: string) => {
 export const sendMessage = (connection: connection, data: Message<string | Record<string, any>>) => {
 	const json = JSON.stringify(data);
 	connection.sendUTF(json);
-};
-
-export const pushToJSONFile = (filePath: string, data: Record<string, any>) => {
-	fs.readFile(filePath, (err, res: Buffer) => {
-		if (err) logger.error(err);
-		const json = JSON.parse(res as unknown as string);
-		json.push(data);
-		fs.writeFile(filePath, JSON.stringify(json), (error: any) => {
-			if (error) logger.error(err);
-		});
-	});
 };
 
 export const sendMessageToAllClients = (

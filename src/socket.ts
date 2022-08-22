@@ -1,16 +1,7 @@
 import { server as WebSocketServer } from 'websocket';
 import { getRandomColor } from './utils/colors';
-import {
-	htmlEntities,
-	isOriginAllowed,
-	pushToJSONFile,
-	sendMessage,
-	sendMessageToAllClients,
-	validateUsername
-} from './utils/helpers';
+import { htmlEntities, isOriginAllowed, sendMessage, sendMessageToAllClients, validateUsername } from './utils/helpers';
 import { Server } from 'http';
-
-import fs from 'fs';
 
 import server from './server';
 import { Client } from 'types/stats';
@@ -101,8 +92,6 @@ wsServer.on('request', (request) => {
 
 					messageId++;
 
-					pushToJSONFile('src/history.json', newMessage);
-
 					sendMessageToAllClients(connections, { type: 'message', data: newMessage });
 				}
 			}
@@ -120,9 +109,6 @@ wsServer.on('request', (request) => {
 		}
 
 		if (clients.length === 0) {
-			fs.writeFile('src/history.json', JSON.stringify([]), (err: any) => {
-				if (err) logger.error(err);
-			});
 			messageId = 0;
 		}
 	});

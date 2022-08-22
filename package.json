@@ -7,7 +7,7 @@
 		"build": "rm -rf dist/* && tsc",
 		"serve": "node dist/src/socket.js",
 		"start": "yarn build && yarn serve",
-		"dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/socket.ts --ignore history.json",
+		"dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/socket.ts",
 		"prettier:check": "prettier '**/*.{ts,js,json,md,yml,yaml}' --check",
 		"prettier:fix": "prettier '**/*.{ts,js,json,md,yml,yaml}' --write",
 		"lint:check": "eslint --ext .js,.ts .",
